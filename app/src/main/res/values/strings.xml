@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Susa</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="or">or</string>
+    <string name="title_activity_feed">FeedActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="my_profile">My Profile</string>
+    <string name="pinned">Pinned</string>
+    <string name="sign_out">Sign Out</string>
+
+    <string-array name="location">
+        <item> </item>
+        <item>Tallahassee</item>
+        <item>Orlando</item>
+    </string-array>
+
+    <string-array name="dates">
+        <item> </item>
+        <item>Spring</item>
+        <item>Fall</item>
+        <item>Summer A</item>
+        <item>Summer B</item>
+        <item>Summer C</item>
+    </string-array>
+</resources>

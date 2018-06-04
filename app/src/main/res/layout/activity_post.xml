@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostActivity">
+
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="243dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        app:srcCompat="@drawable/signup_logo" />
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="270dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="42dp"
+        android:text="Title"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/text_description"
+        android:layout_width="268dp"
+        android:layout_height="55dp"
+        android:layout_alignEnd="@+id/imageView2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="201dp"
+        android:text="Description"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_price"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/text_availability"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="169dp"
+        android:text="Price" />
+
+    <TextView
+        android:id="@+id/text_dollar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/text_price"
+        android:layout_marginStart="54dp"
+        android:text="$" />
+
+    <TextView
+        android:id="@+id/text_availability"
+        android:layout_width="117dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_title"
+        android:layout_marginBottom="125dp"
+        android:text="Availability" />
+
+    <TextView
+        android:id="@+id/text_info"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_title"
+        android:layout_marginBottom="74dp"
+        android:text="Contact:" />
+
+    <TextView
+        android:id="@+id/text_email"
+        android:layout_width="129dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/text_info"
+        android:layout_centerHorizontal="true"
+        android:text="Email" />
+
+    <TextView
+        android:id="@+id/text_address"
+        android:layout_width="123dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/text_availability"
+        android:layout_marginEnd="55dp"
+        android:text="Address" />
+
+</RelativeLayout>

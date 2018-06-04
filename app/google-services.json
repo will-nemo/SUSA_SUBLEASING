@@ -1,0 +1,59 @@
+{
+  "project_info": {
+    "project_number": "1060315307713",
+    "firebase_url": "https://susa-4bb9c.firebaseio.com",
+    "project_id": "susa-4bb9c",
+    "storage_bucket": "susa-4bb9c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1060315307713:android:03513451d804b6db",
+        "android_client_info": {
+          "package_name": "susa.lambert.william.susa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1060315307713-m0u0lnp21ia6f2kfeq1daudus317mkko.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "susa.lambert.william.susa",
+            "certificate_hash": "a54c02e0651faf4cb821afe3e494cdf975cb2a66"
+          }
+        },
+        {
+          "client_id": "1060315307713-buf8fq8loudfblt2ss6jgoq0pvtr9tf5.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1060315307713-buf8fq8loudfblt2ss6jgoq0pvtr9tf5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrPLAlFi0Ie5TqYReEA2jeF6fu5AO43TM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1060315307713-buf8fq8loudfblt2ss6jgoq0pvtr9tf5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

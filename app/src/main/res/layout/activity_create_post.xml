@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreatePostActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            />
+
+    </android.support.design.widget.AppBarLayout>
+
+
+
+    <ImageView
+        android:id="@+id/image_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/image_2"
+        android:layout_alignParentLeft="true" />
+
+
+    <ImageView
+        android:id="@+id/image_2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="101dp" />
+
+    <ImageView
+        android:id="@+id/image_3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/image_2" />
+
+    <EditText
+        android:id="@+id/edit_address"
+        android:layout_width="342dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="117dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Address"
+        android:inputType="textLongMessage"
+        android:textColorHint="@color/colorPrimary" />
+
+    <Spinner
+        android:id="@+id/spinner_location"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="173dp" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="85dp"
+        android:layout_height="30dp"
+        android:layout_alignStart="@+id/edit_address"
+        android:layout_alignTop="@+id/spinner_location"
+        android:text="Location"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/relative_normal"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="269dp">
+
+        <TextView
+            android:id="@+id/title_normal"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Price: $500"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:max="1600"
+            android:min="100"
+            android:progress="500" />
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/edit_description"
+        android:layout_width="342dp"
+        android:layout_height="39dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="243dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Impress with a short description..."
+        android:inputType="textMultiLine"
+        android:textColorHint="@color/colorPrimary" />
+
+    <Spinner
+        android:id="@+id/spinner_availability"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/spinner_location"
+        android:layout_alignTop="@+id/tv_avail" />
+
+    <TextView
+        android:id="@+id/tv_avail"
+        android:layout_width="169dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="218dp"
+        android:text="Semester Available"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/edit_title"
+        android:layout_width="343dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/edit_address"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-117dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:ems="10"
+        android:hint="Title with a hook"
+        android:inputType="textLongMessage"
+        android:textColorHint="@color/colorPrimary" />
+
+    <Button
+        android:id="@+id/button_upload"
+        android:layout_width="224dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:text="Upload Pictures" />
+
+    <TextView
+        android:id="@+id/tv_pic"
+        android:layout_width="186dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="211dp"
+        android:text="Can upload up to 3 pictures"
+        android:textColor="@color/colorPrimary" />
+
+</RelativeLayout>
