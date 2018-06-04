@@ -65,6 +65,7 @@ public class CreatePostActivity extends AppCompatActivity {
     public String useremail;
     public int progressC;
     FirebaseFirestore databaseReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

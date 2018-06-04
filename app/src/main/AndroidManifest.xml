@@ -35,12 +35,20 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="susa.lambert.william.susa.FeedActivity" />
         </activity>
-        <activity android:name=".PostActivity"
+        <activity
+            android:name=".PostActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="susa.lambert.william.susa.FeedActivity" />
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="susa.lambert.william.susa.FeedActivity" />
         </activity>
+        <activity
+            android:name=".SearchQActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SearchFActivity"
+            android:theme="@style/AppTheme.NoActionBar"> <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="susa.lambert.william.susa.SearchQActivity" /></activity>
     </application>
 
 </manifest>

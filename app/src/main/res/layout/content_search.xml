@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".SearchQActivity"
+    tools:showIn="@layout/app_bar_search">
+
+    <Button
+        android:id="@+id/button_search"
+        android:layout_width="153dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="57dp"
+        android:text="Search" />
+
+    <Spinner
+        android:id="@+id/spinner_location"
+        android:layout_width="165dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="28dp"
+        android:layout_marginTop="53dp" />
+
+    <TextView
+        android:id="@+id/tv_location"
+        android:layout_width="85dp"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/spinner_location"
+        android:layout_marginStart="45dp"
+        android:text="Location"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+
+
+    <Spinner
+        android:id="@+id/spinner_availability"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/spinner_location"
+        android:layout_marginTop="141dp" />
+
+    <TextView
+        android:id="@+id/text_availability"
+        android:layout_width="93dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/spinner_availability"
+        android:layout_alignEnd="@+id/tv_location"
+        android:text="Availability"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:id="@+id/relative_normal"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="269dp">
+
+        <TextView
+            android:id="@+id/title_normal"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="Price: $500"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+
+        <SeekBar
+            android:id="@+id/seekBar2"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:max="1600"
+            android:min="100"
+            android:progress="500" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
