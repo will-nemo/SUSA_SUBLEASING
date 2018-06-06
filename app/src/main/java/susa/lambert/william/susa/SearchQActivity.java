@@ -225,11 +225,11 @@ public class SearchQActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-            //   Intent nIntent = new Intent(PostActivity.this, FeedActivity.class);
-            //  startActivity(nIntent);
+            Intent mIntent = new Intent(SearchQActivity.this, UserProfileActivity.class);
+            startActivity(mIntent);
         } else if (id == R.id.nav_pinned) {
-            //  Intent mIntent = new Intent(PostActivity.this, FavoritesActivity.class);
-            //  startActivity(mIntent);
+            Intent mIntent = new Intent(SearchQActivity.this, StoredPostActivity.class);
+            startActivity(mIntent);
         } else if (id == R.id.nav_signout) {
             firebaseAuth.signOut();
             Intent oIntent = new Intent(SearchQActivity.this, MainActivity.class);

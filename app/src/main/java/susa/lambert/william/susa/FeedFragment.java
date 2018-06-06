@@ -38,12 +38,7 @@ public abstract class FeedFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(view.getContext(), PostActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putString("posttime", time);
-            bundle.putString("userid", uid);
-            intent.putExtras(bundle);
-            startActivity(intent);
+            performAction(time, uid);
         }
 
         public void setEmail(String email){
@@ -167,6 +162,8 @@ public abstract class FeedFragment extends Fragment {
     }
 
     public abstract Query getQuery(FirebaseFirestore databaseReference);
+
+    public abstract void performAction(String time, String uid);
 
     public void fetchData(){
 

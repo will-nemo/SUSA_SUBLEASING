@@ -10,24 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
+public class StoredPostFragment extends FeedFragment{
 
-public class HomeFeedFrag extends FeedFragment {
-    public static final String TAG = HomeFeedFrag.class.getCanonicalName();
+    public static final String TAG =StoredPostFragment.class.getCanonicalName();
 
-    public HomeFeedFrag() {
+    public StoredPostFragment() {
         // Required empty public constructor
-    }
-
-    @Override
-    public Query getQuery(FirebaseFirestore databaseReference) {
-        // All my posts
-        return   databaseReference.collection("posts")
-                .whereEqualTo("status", "VACANT")
-                .orderBy("timeOf", Query.Direction.DESCENDING);
     }
 
     @Override
@@ -39,6 +31,16 @@ public class HomeFeedFrag extends FeedFragment {
         bundle.putString("userid", uid);
         intent.putExtras(bundle);
         startActivity(intent);
+    }
+
+    @Override
+    public Query getQuery(FirebaseFirestore databaseReference) {
+        // All my posts
+
+        return   databaseReference.collection("user-likes").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("like")
+                .whereEqualTo("status", "VACANT")
+                .orderBy("timeOf", Query.Direction.DESCENDING);
     }
 
 }

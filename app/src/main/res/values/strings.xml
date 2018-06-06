@@ -26,8 +26,13 @@
         <item> </item>
         <item>Spring</item>
         <item>Fall</item>
-        <item>Summer A</item>
-        <item>Summer B</item>
-        <item>Summer C</item>
+        <item>Summer 1st Semester</item>
+        <item>Summer 2nd Semester</item>
+        <item>Summer Full</item>
     </string-array>
+    <string name="title_activity_user_profile">UserProfileActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+    <string name="section_format">Hello World from section: %1$d</string>
 </resources>

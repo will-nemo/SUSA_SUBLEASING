@@ -159,22 +159,12 @@ public class FeedActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
-         //   Intent nIntent = new Intent(PostActivity.this, FeedActivity.class);
-          //  startActivity(nIntent);
-
-            UserPostsFrag fragment = new UserPostsFrag();
-           // fragment.setArguments(bundle);
-
-            FragmentManager fm = getSupportFragmentManager();
-            FragmentTransaction trans = fm.beginTransaction();
-            trans.hide(homeFeedFrag);
-            trans.add(R.id.fragment_container, fragment);
-            trans.addToBackStack(HomeFeedFrag.TAG);
-            trans.commit();
+            Intent mIntent = new Intent(FeedActivity.this, UserProfileActivity.class);
+            startActivity(mIntent);
 
         } else if (id == R.id.nav_pinned) {
-          //  Intent mIntent = new Intent(PostActivity.this, FavoritesActivity.class);
-          //  startActivity(mIntent);
+            Intent mIntent = new Intent(FeedActivity.this, StoredPostActivity.class);
+            startActivity(mIntent);
         } else if (id == R.id.nav_signout) {
             firebaseAuth.signOut();
             Intent oIntent = new Intent(FeedActivity.this, MainActivity.class);

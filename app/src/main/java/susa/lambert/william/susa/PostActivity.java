@@ -151,7 +151,7 @@ public class PostActivity extends AppCompatActivity {
             Date date = new Date();
 
             String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            UserPost userPost = new UserPost(progressC, addy, city, des, Uid, timeOf, temp_image,
+            UserPost userPost = new UserPost(progressC, addy, city, des, Uid, timeOF, temp_image,
                     temp_image2, temp_image3, useremail, avail, tit);
             FirebaseFirestore dt = FirebaseFirestore.getInstance();
             FirebaseFirestore dl = FirebaseFirestore.getInstance();

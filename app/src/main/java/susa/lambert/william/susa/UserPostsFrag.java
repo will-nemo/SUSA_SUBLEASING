@@ -1,6 +1,7 @@
 package susa.lambert.william.susa;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -30,5 +31,14 @@ public class UserPostsFrag extends FeedFragment {
                 .orderBy("timeOf", Query.Direction.DESCENDING);
     }
 
+    @Override
+    public void performAction(String time, String uid){
 
+        Intent intent = new Intent(getContext(), PostActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("posttime", time);
+        bundle.putString("userid", uid);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
 }
