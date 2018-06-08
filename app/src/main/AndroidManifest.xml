@@ -67,6 +67,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="susa.lambert.william.susa.FeedActivity" />
         </activity>
+        <activity android:name=".PostedActivity"
+            android:theme="@style/AppTheme.NoActionBar"><meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="susa.lambert.william.susa.FeedActivity" /></activity>
     </application>
 
 </manifest>

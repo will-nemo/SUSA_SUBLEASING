@@ -7,7 +7,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -24,7 +23,7 @@ import com.google.firebase.firestore.Transaction;
 
 import java.util.Date;
 
-public class PostActivity extends AppCompatActivity {
+public class PostedActivity extends PostActivity {
 
     private TextView tText;
     private TextView dText;
@@ -36,6 +35,7 @@ public class PostActivity extends AppCompatActivity {
     private String timeOF = "";
     private String pUser = "";
     private String iPost = "";
+    private String action = "";
     public String loc,desc,addr,uid,img,time, img2, img3,email, availabilty;
     public int pri, likes_digit;
 
@@ -71,6 +71,7 @@ public class PostActivity extends AppCompatActivity {
             timeOF = bundle.getString("posttime");
             pUser = bundle.getString("userid");
             iPost = bundle.getString("postid");
+            action = bundle.getString("action");
         }
 
         ActionBar ab = getSupportActionBar();
@@ -94,25 +95,25 @@ public class PostActivity extends AppCompatActivity {
                 setValues(userPost.title, userPost.desc, userPost.price,
                         userPost.availability, userPost.address, userPost.email);
 
-                        progressC = userPost.price;
-                        addy = userPost.address;
-                        city = userPost.location;
-                        des = userPost.getDesc();
-                        Uid = userPost.userID;
-                        time = userPost.timeOf;
-                        temp_image = userPost.post_image;
-                        temp_image2 = userPost.post_image2;
-                        temp_image3 = userPost.post_image3;
-                        useremail = userPost.email;
-                        avail = userPost.availability;
-                        tit = userPost.title;
-                        postID = userPost.postID;
+                progressC = userPost.price;
+                addy = userPost.address;
+                city = userPost.location;
+                des = userPost.getDesc();
+                Uid = userPost.userID;
+                time = userPost.timeOf;
+                temp_image = userPost.post_image;
+                temp_image2 = userPost.post_image2;
+                temp_image3 = userPost.post_image3;
+                useremail = userPost.email;
+                avail = userPost.availability;
+                tit = userPost.title;
+                postID = userPost.postID;
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(PostActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PostedActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });;
     }
@@ -133,7 +134,7 @@ public class PostActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.post_tool, menu);
+        getMenuInflater().inflate(R.menu.posted_tool, menu);
         return true;
     }
 
@@ -142,59 +143,61 @@ public class PostActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_home) {
-            Intent intent = new Intent(PostActivity.this, FeedActivity.class);
+            Intent intent = new Intent(PostedActivity.this, FeedActivity.class);
             startActivity(intent);
             return true;
         }
         if (id == R.id.action_search) {
-            Intent intent = new Intent(PostActivity.this, SearchQActivity.class);
+            Intent intent = new Intent(PostedActivity.this, SearchQActivity.class);
             startActivity(intent);
             return true;
         }
-        if (id == R.id.action_store) {
-
-            Date date = new Date();
+        if (id == R.id.action_delete) {
 
             String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-            UserPost userPost = new UserPost(progressC, addy, city, des, Uid, timeOF, temp_image,
-                    temp_image2, temp_image3, useremail, avail, tit, postID);
             FirebaseFirestore dt = FirebaseFirestore.getInstance();
-            FirebaseFirestore dl = FirebaseFirestore.getInstance();
 
-            dt.collection("user-likes").document(userid).collection("likes")
-                    .document(postID).set(userPost);
+            if(action.equals("stored")) {
 
+                dt.collection("user-likes").document(userid).collection("likes").document(postID)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
 
-            final DocumentReference sfDocRef = dl.collection("posts").document(postID);
+                                Toast.makeText(PostedActivity.this, "Post deleted Successfully!", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(PostedActivity.this, StoredPostActivity.class);
+                                startActivity(intent);
+                                //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Log.w(TAG, "Error deleting document", e);
+                            }
+                        });
 
-            dl.runTransaction(new Transaction.Function<Void>() {
-                @Override
-                public Void apply(Transaction transaction) throws FirebaseFirestoreException {
-                    DocumentSnapshot snapshot = transaction.get(sfDocRef);
-                    double newnum = snapshot.getDouble("likes") + 1;
-                    transaction.update(sfDocRef, "likes", newnum);
+            }else if(action.equals("user")){
+                dt.collection("posts").document(postID)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
 
-                    // Success
-                    return null;
-                }
-            }).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    //Log.d(TAG, "Transaction success!");
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            //Log.w(TAG, "Transaction failure.", e);
-                        }
-                    });
-
-
-
-
-
-
+                                Toast.makeText(PostedActivity.this, "Post deleted Successfully!", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(PostedActivity.this, UserProfileActivity.class);
+                                startActivity(intent);
+                                //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Log.w(TAG, "Error deleting document", e);
+                            }
+                        });
+            }
             return true;
         }
         //noinspection SimplifiableIfStatement
@@ -203,3 +206,5 @@ public class PostActivity extends AppCompatActivity {
     }
 
 }
+
+

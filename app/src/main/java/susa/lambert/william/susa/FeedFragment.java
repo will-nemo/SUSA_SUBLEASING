@@ -25,7 +25,7 @@ public abstract class FeedFragment extends Fragment {
     {
         View mView;
         Context mContext;
-        String loc,desc,addr,uid,img,time, img2, img3,email, availabilty;
+        String loc,desc,addr,uid,img,time, img2, img3,email, availabilty, postID;
         int pri, likes_digit;
 
         public UserPostHolder(View itemView)
@@ -38,13 +38,15 @@ public abstract class FeedFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            performAction(time, uid);
+            performAction(time, uid, postID);
         }
 
         public void setEmail(String email){
             this.email = email;
         }
 
+
+        public void setPostID(String postID){this.postID = postID;}
 
         public void setUid(String id){
             this.uid =id ;
@@ -163,7 +165,7 @@ public abstract class FeedFragment extends Fragment {
 
     public abstract Query getQuery(FirebaseFirestore databaseReference);
 
-    public abstract void performAction(String time, String uid);
+    public abstract void performAction(String time, String uid, String poatID);
 
     public void fetchData(){
 
@@ -186,6 +188,7 @@ public abstract class FeedFragment extends Fragment {
                 viewHolder.setEmail(model.getEmail());
                 viewHolder.setLikes(model.getLikes());
                 viewHolder.setAvailability(model.getAvailability());
+                viewHolder.setPostID(model.getPostID());
             }
 
             @Override

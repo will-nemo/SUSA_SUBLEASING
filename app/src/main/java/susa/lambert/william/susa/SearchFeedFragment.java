@@ -21,12 +21,13 @@ public class SearchFeedFragment extends FeedFragment {
     }
 
     @Override
-    public void performAction(String time, String uid){
+    public void performAction(String time, String uid, String postID){
 
         Intent intent = new Intent(getContext(), PostActivity.class);
         Bundle bundle = new Bundle();
         bundle.putString("posttime", time);
         bundle.putString("userid", uid);
+        bundle.putString("postid", postID);
         intent.putExtras(bundle);
         startActivity(intent);
     }

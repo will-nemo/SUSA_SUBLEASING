@@ -7,6 +7,7 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -27,9 +28,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -37,6 +41,7 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.util.Date;
+import java.util.Random;
 
 public class CreatePostActivity extends AppCompatActivity {
 
@@ -64,6 +69,7 @@ public class CreatePostActivity extends AppCompatActivity {
     boolean image3= false;
     public String useremail;
     public int progressC;
+    public boolean idFree;
     FirebaseFirestore databaseReference;
 
     @Override
@@ -71,6 +77,7 @@ public class CreatePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
+        idFree = false;
         value = (TextView)findViewById(R.id.title_normal);
         address = (EditText) findViewById(R.id.edit_address);
         title = (EditText) findViewById(R.id.edit_title);
@@ -296,13 +303,26 @@ public class CreatePostActivity extends AppCompatActivity {
         timeOf = date.toString();
 
 
-        UserPost userPost = new UserPost(progressC, addy, city, des, Uid, timeOf, temp_image,
-                temp_image2, temp_image3, useremail, avail, tit);
-
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.collection("posts").document(timeOf).set(userPost);
+        String postID = getRandomHexString(25);
+
+
+        UserPost userPost = new UserPost(progressC, addy, city, des, Uid, timeOf, temp_image,
+                temp_image2, temp_image3, useremail, avail, tit, postID);
+
+        databaseReference.collection("posts").document(postID).set(userPost);
         Toast.makeText(this, "Posted", Toast.LENGTH_LONG).show();
     }
 
+
+    private String getRandomHexString(int numchars){
+        Random r = new Random();
+        StringBuffer sb = new StringBuffer();
+        while(sb.length() < numchars){
+            sb.append(Integer.toHexString(r.nextInt()));
+        }
+
+        return sb.toString().substring(0, numchars);
+    }
 }

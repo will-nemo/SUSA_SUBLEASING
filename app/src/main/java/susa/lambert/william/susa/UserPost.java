@@ -14,10 +14,12 @@ public class UserPost {
     public String post_image3;
     public String email;
     public String title;
+    public String postID;
+
 
     public UserPost(int price, String address, String location, String desc,
                     String userID, String timeOf, String post_image, String post_image2,
-                    String post_image3,String email, String availability, String title) {
+                    String post_image3,String email, String availability, String title, String postID) {
         this.price = price;
         this.likes = 0;
         this.status = "VACANT";
@@ -32,6 +34,7 @@ public class UserPost {
         this.post_image3 = post_image3;
         this.email = email;
         this.title = title;
+        this.postID = postID;
     }
 
     public String getTitle() {
@@ -149,5 +152,13 @@ public class UserPost {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPostID() {
+        return postID;
+    }
+
+    public void setPostID(String postID) {
+        this.postID = postID;
     }
 }
