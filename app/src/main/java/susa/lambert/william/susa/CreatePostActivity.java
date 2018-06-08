@@ -226,7 +226,7 @@ public class CreatePostActivity extends AppCompatActivity {
 
                     mdownloadUri = taskSnapshot.getDownloadUrl();
                     if(!image1) {
-                        Picasso.with(CreatePostActivity.this).load(mdownloadUri).fit().centerCrop().into(image_1);
+                        Picasso.get().load(mdownloadUri).fit().centerCrop().into(image_1);
                         post_image= mdownloadUri;
                         post_image2= mdownloadUri;
                         post_image3= mdownloadUri;
@@ -234,12 +234,12 @@ public class CreatePostActivity extends AppCompatActivity {
                         image1= true;
                     }
                     else if (!image2){
-                        Picasso.with(CreatePostActivity.this).load(mdownloadUri).fit().centerCrop().into(image_2);
+                        Picasso.get().load(mdownloadUri).fit().centerCrop().into(image_2);
                         post_image2= mdownloadUri;
                         image2= true;
                     }
                     else if (!image3){
-                        Picasso.with(CreatePostActivity.this).load(mdownloadUri).fit().centerCrop().into(image_3);
+                        Picasso.get().load(mdownloadUri).fit().centerCrop().into(image_3);
                         post_image3= mdownloadUri;
                         image3=true;
                     }

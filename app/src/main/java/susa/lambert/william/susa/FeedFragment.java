@@ -67,17 +67,17 @@ public abstract class FeedFragment extends Fragment {
         public void setImage(Context ctx,String image){
             this.img = image;
             ImageView post_image= (ImageView) mView.findViewById(R.id.post_image);
-            Picasso.with(ctx).load(image).into(post_image);
+            Picasso.get().load(image).into(post_image);
         }
         public void setImage2(Context ctx,String image){
             this.img2 = image;
             ImageView post_image= (ImageView) mView.findViewById(R.id.post_image2);
-            Picasso.with(ctx).load(image).into(post_image);
+            Picasso.get().load(image).into(post_image);
         }
         public void setImage3(Context ctx,String image){
             this.img3 = image;
             ImageView post_image= (ImageView) mView.findViewById(R.id.post_image3);
-            Picasso.with(ctx).load(image).into(post_image);
+            Picasso.get().load(image).into(post_image);
         }
 
         public void setLocation(String city){

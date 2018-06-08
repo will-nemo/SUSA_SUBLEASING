@@ -1,14 +1,20 @@
 package susa.lambert.william.susa;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
+import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
@@ -55,6 +62,7 @@ public class PostedActivity extends PostActivity {
     private String city;
     private String avail;
     private String postID;
+    private String[] mImages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +85,7 @@ public class PostedActivity extends PostActivity {
         ActionBar ab = getSupportActionBar();
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
+        mImages = new String[3];
 
         tText = findViewById(R.id.text_title);
         dText = findViewById(R.id.text_description);
@@ -108,6 +117,14 @@ public class PostedActivity extends PostActivity {
                 avail = userPost.availability;
                 tit = userPost.title;
                 postID = userPost.postID;
+
+                mImages[0] = temp_image;
+                mImages[1] = temp_image2;
+                mImages[2] = temp_image3;
+
+                ViewPager viewPager = findViewById(R.id.container);
+                ImagePagerAdapter adapter = new ImagePagerAdapter(PostedActivity.this,mImages);
+                viewPager.setAdapter(adapter);
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -204,6 +221,47 @@ public class PostedActivity extends PostActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    private class ImagePagerAdapter extends PagerAdapter {
+        private Context context;
+        private String[] mImages;
+
+        ImagePagerAdapter(Context context, String[] imageUrls) {
+            this.context = context;
+            this.mImages = imageUrls;
+        }
+
+        @Override
+        public int getCount() {
+            return mImages.length;
+        }
+
+        @Override
+        public boolean isViewFromObject(View view, Object object) {
+            return view == ((ImageView) object);
+        }
+
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            Context context = PostedActivity.this;
+            ImageView imageView = new ImageView(context);
+
+            Picasso.get()
+                    .load(mImages[position])
+                    .fit()
+                    .centerCrop()
+                    .into(imageView);
+            container.addView(imageView);
+
+            return imageView;
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            ((ViewPager) container).removeView((ImageView) object);
+        }
+    }
+
 
 }
 
