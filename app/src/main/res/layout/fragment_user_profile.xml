@@ -6,34 +6,114 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UserProfileFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="237dp"
-        android:layout_height="139dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="67dp"
-        android:contentDescription="@string/nav_header_desc"
-        android:paddingTop="@dimen/nav_header_vertical_spacing"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="231dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="346dp"
+            android:layout_height="150dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:contentDescription="@string/nav_header_desc"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            app:srcCompat="@mipmap/ic_launcher_round" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="115dp"
+            android:src="@drawable/ic_add_a_photo_black_24dp" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/text_name"
         android:layout_width="234dp"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/text_email"
-        android:layout_centerVertical="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="236dp"
+        android:gravity="center"
         android:text="Name"
-        android:textSize="24sp" />
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_email"
         android:layout_width="236dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="201dp"
+        android:layout_centerInParent="true"
+        android:gravity="center"
         android:text="Email"
-        android:textSize="24sp" />
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_c"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="241dp"
+        android:layout_marginStart="29dp"
+        android:text="College:"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_college"
+        android:layout_width="274dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textview_c"
+        android:layout_marginEnd="31dp"
+        android:text="College"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textview_j"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textview_c"
+        android:layout_marginBottom="186dp"
+        android:text="Joined: "
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_joined"
+        android:layout_width="274dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/text_college"
+        android:layout_alignTop="@+id/textview_j"
+        android:text="Joined"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_profle"
+        android:layout_width="204dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="116dp"
+        android:layout_marginEnd="98dp"
+        android:text="Edit Profile"
+        android:textColor="@android:color/black" />
 
 </RelativeLayout>

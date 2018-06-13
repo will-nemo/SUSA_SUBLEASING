@@ -91,7 +91,11 @@ public abstract class FeedFragment extends Fragment {
          //   like_num.setText(Integer.toString(likes));
         }
 
-        public void setAvailability(String avail){availabilty = avail;}
+        public void setAvailability(String avail){
+            TextView post_avail= (TextView)mView.findViewById(R.id.post_availability);
+            availabilty = avail;
+            post_avail.setText(avail);
+        }
         public void setDesc(String s){
             desc = s;
         }

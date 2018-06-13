@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText Email;
     private EditText PasswordText;
     private EditText mUsername;
-    private String mEmail;
+    private String mEmail, college = "", pImage = "DEFAULT";
     private String userN;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
@@ -107,7 +107,16 @@ public class MainActivity extends AppCompatActivity {
         if(check.contains("@")){	//checks to see if there is an email entered - WJL
             check = check.split("@")[1];
 
-            if(check.equalsIgnoreCase("my.fsu.edu") || check.equalsIgnoreCase("tcc.fl.edu")){		//makes sure user registering has a College Email - WJL
+            if(check.equalsIgnoreCase("my.fsu.edu") || check.equalsIgnoreCase("tcc.fl.edu")|| check.equalsIgnoreCase("famu.edu")){		//makes sure user registering has a College Email - WJL
+
+                if(check.equalsIgnoreCase("tcc.fl.edu"))
+                    college = "Tallahassee Community College";
+
+                if(check.equalsIgnoreCase("my.fsu.edu"))
+                    college = "Florida State University";
+
+                if(check.equalsIgnoreCase("famu.edu"))
+                    college = "Florida A&M University";
 
             }else{
                 Toast.makeText(MainActivity.this, "College Email Required",
@@ -135,10 +144,12 @@ public class MainActivity extends AppCompatActivity {
 
                             String id = user.getUid();
                             if (userN.isEmpty()) {
-                                Toast.makeText(MainActivity.this, "dAuthentication faile bitch.",
+                                Toast.makeText(MainActivity.this, "Authentication failed.",
                                         Toast.LENGTH_SHORT).show();
                             }else {
-                                User mUser = new User(userN, mEmail);
+
+
+                                User mUser = new User(userN, mEmail, college, pImage);
 
                                 mDatabase.collection("users").document(id).set(mUser);
                             }

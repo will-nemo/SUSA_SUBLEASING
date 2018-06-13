@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,6 +30,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
+
+import static susa.lambert.william.susa.UserProfileFragment.*;
 
 public class SearchQActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -116,7 +120,7 @@ public class SearchQActivity extends AppCompatActivity
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                setName(user.name);
+                setInfo(user.name, user.pImage);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -242,6 +246,15 @@ public class SearchQActivity extends AppCompatActivity
         return true;
     }
 
-    public void setName(String name){ ((TextView) nav_header.findViewById(R.id.head_name)).setText(name); }
+    public void setInfo(String name, String image){
+        ((TextView) nav_header.findViewById(R.id.head_name)).setText(name);
+
+
+        ImageView imageView = ((ImageView) nav_header.findViewById(R.id.imageView));
+
+        if(!image.equals("DEFAULT"))
+            Picasso.get().load(image).transform(new CircleTransform())
+                    .fit().centerCrop().into(imageView);
+    }
 }
 

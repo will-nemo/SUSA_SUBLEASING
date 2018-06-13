@@ -17,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 public class FeedActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -77,7 +79,7 @@ public class FeedActivity extends AppCompatActivity
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 User user = documentSnapshot.toObject(User.class);
-                setName(user.name);
+                setInfo(user.name, user.pImage);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -177,5 +179,14 @@ public class FeedActivity extends AppCompatActivity
         return true;
     }
 
-    public void setName(String name){ ((TextView) nav_header.findViewById(R.id.head_name)).setText(name); }
+    public void setInfo(String name, String image){
+        ((TextView) nav_header.findViewById(R.id.head_name)).setText(name);
+
+
+        ImageView imageView = ((ImageView) nav_header.findViewById(R.id.imageView));
+
+        if(!image.equals("DEFAULT"))
+            Picasso.get().load(image).transform(new CircleTransform())
+                    .fit().centerCrop().into(imageView);
+    }
 }
