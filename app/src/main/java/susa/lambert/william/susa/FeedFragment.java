@@ -25,8 +25,9 @@ public abstract class FeedFragment extends Fragment {
     {
         View mView;
         Context mContext;
-        String loc,desc,addr,uid,img,time, img2, img3,email, availabilty, postID;
+        String loc,desc,addr,uid,img, img2, img3,email, availabilty, postID;
         int pri, likes_digit;
+        long time;
 
         public UserPostHolder(View itemView)
         {
@@ -99,7 +100,7 @@ public abstract class FeedFragment extends Fragment {
         public void setDesc(String s){
             desc = s;
         }
-        public void setTime(String s){
+        public void setTime(long s){
             this.time = s;
         }
 
@@ -169,7 +170,7 @@ public abstract class FeedFragment extends Fragment {
 
     public abstract Query getQuery(FirebaseFirestore databaseReference);
 
-    public abstract void performAction(String time, String uid, String poatID);
+    public abstract void performAction(long time, String uid, String poatID);
 
     public void fetchData(){
 

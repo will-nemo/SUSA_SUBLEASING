@@ -23,11 +23,11 @@ public class StoredPostFragment extends FeedFragment{
     }
 
     @Override
-    public void performAction(String time, String uid, String postID){
+    public void performAction(long time, String uid, String postID){
 
         Intent intent = new Intent(getContext(), PostedActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("posttime", time);
+        bundle.putLong("posttime", time);
         bundle.putString("userid", uid);
         bundle.putString("postid", postID);
         bundle.putString("action", "stored");
@@ -42,7 +42,7 @@ public class StoredPostFragment extends FeedFragment{
         return   databaseReference.collection("user-likes").document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .collection("likes")
                 .whereEqualTo("status", "VACANT")
-                .orderBy("timeOf", Query.Direction.DESCENDING);
+                .orderBy("timeOf", Query.Direction.ASCENDING);
     }
 
 }

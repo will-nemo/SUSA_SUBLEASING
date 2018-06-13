@@ -5,16 +5,26 @@ public class User {
     public String email;
     public String college;
     public String pImage;
+    public long timeJoined;
 
     public User(){
 
     }
 
-    public User(String name, String email, String college, String pImage) {
+    public User(String name, String email, String college, String pImage, long timeJoined) {
         this.name = name;
         this.email = email;
         this.pImage = pImage;
         this.college = college;
+        this.timeJoined = timeJoined;
+    }
+
+    public long getTimeJoined() {
+        return timeJoined;
+    }
+
+    public void setTimeJoined(long timeJoined) {
+        this.timeJoined = timeJoined;
     }
 
     public String getName() {

@@ -148,8 +148,9 @@ public class MainActivity extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             }else {
 
+                                long tsLong = System.currentTimeMillis()/1000;
 
-                                User mUser = new User(userN, mEmail, college, pImage);
+                                User mUser = new User(userN, mEmail, college, pImage, tsLong);
 
                                 mDatabase.collection("users").document(id).set(mUser);
                             }

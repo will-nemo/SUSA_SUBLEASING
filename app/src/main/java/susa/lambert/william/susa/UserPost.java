@@ -8,7 +8,8 @@ public class UserPost {
     public String status;
     public String location;
     public String availability;
-    public String desc,userID,timeOf;
+    public String desc,userID;
+    public long timeOf;
     public String post_image;
     public String post_image2;
     public String post_image3;
@@ -18,7 +19,7 @@ public class UserPost {
 
 
     public UserPost(int price, String address, String location, String desc,
-                    String userID, String timeOf, String post_image, String post_image2,
+                    String userID, long timeOf, String post_image, String post_image2,
                     String post_image3,String email, String availability, String title, String postID) {
         this.price = price;
         this.likes = 0;
@@ -114,13 +115,9 @@ public class UserPost {
         this.userID = userID;
     }
 
-    public String getTimeOf() {
-        return timeOf;
-    }
+    public long getTimeOf() { return timeOf; }
 
-    public void setTimeOf(String timeOf) {
-        this.timeOf = timeOf;
-    }
+    public void setTimeOf(long timeOf) { this.timeOf = timeOf; }
 
     public String getPost_image() {
         return post_image;

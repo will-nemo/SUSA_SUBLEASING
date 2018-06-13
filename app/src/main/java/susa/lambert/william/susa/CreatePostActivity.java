@@ -360,16 +360,18 @@ public class CreatePostActivity extends AppCompatActivity {
         String temp_image2= post_image2.toString();
         String temp_image3= post_image3.toString();
 
-        Date date = new Date();
-        timeOf = date.toString();
+        //Date date = new Date();
+        //timeOf = date.toString();
 
+        long tsLong = System.currentTimeMillis()/1000;
+       // String ts = tsLong.toString();
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         String postID = getRandomHexString(25);
 
 
-        UserPost userPost = new UserPost(progressC, addy, city, des, Uid, timeOf, temp_image,
+        UserPost userPost = new UserPost(progressC, addy, city, des, Uid, tsLong, temp_image,
                 temp_image2, temp_image3, useremail, avail, tit, postID);
 
         databaseReference.collection("posts").document(postID).set(userPost);

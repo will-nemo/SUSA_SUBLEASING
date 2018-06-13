@@ -39,19 +39,20 @@ public class PostedActivity extends PostActivity {
     private TextView adText;
     private TextView eText;
     private FirebaseFirestore firebaseFirestore;
-    private String timeOF = "";
+    private long timeOF;
     private String pUser = "";
     private String iPost = "";
     private String action = "";
-    public String loc,desc,addr,uid,img,time, img2, img3,email, availabilty;
+    public String loc,desc,addr,uid,img, img2, img3,email, availabilty;
     public int pri, likes_digit;
+    public long time;
 
     public String useremail;
     public int progressC;
     Uri post_image;
     Uri post_image2;
     Uri post_image3;
-    String timeOf;
+    long timeOf;
     String Uid;
     String addy;
     String des;
@@ -76,7 +77,7 @@ public class PostedActivity extends PostActivity {
         Bundle bundle = intent.getExtras();
 
         if(bundle != null){                         //error checking for empty Bundle
-            timeOF = bundle.getString("posttime");
+            timeOF = bundle.getLong("posttime");
             pUser = bundle.getString("userid");
             iPost = bundle.getString("postid");
             action = bundle.getString("action");

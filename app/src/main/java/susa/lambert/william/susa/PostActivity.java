@@ -42,11 +42,12 @@ public class PostActivity extends AppCompatActivity {
     private TextView adText;
     private TextView eText;
     private FirebaseFirestore firebaseFirestore;
-    private String timeOF = "";
+    private long timeOF;
     private String pUser = "";
     private String iPost = "";
-    public String loc,desc,addr,uid,img,time, img2, img3,email, availabilty;
+    public String loc,desc,addr,uid,img, img2, img3,email, availabilty;
     public int pri, likes_digit;
+    public long time;
 
     public String useremail;
     public int progressC;
@@ -80,7 +81,7 @@ public class PostActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
 
         if(bundle != null){                         //error checking for empty Bundle
-            timeOF = bundle.getString("posttime");
+            timeOF = bundle.getLong("posttime");
             pUser = bundle.getString("userid");
             iPost = bundle.getString("postid");
         }

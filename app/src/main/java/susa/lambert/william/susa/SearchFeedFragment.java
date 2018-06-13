@@ -21,11 +21,11 @@ public class SearchFeedFragment extends FeedFragment {
     }
 
     @Override
-    public void performAction(String time, String uid, String postID){
+    public void performAction(long time, String uid, String postID){
 
         Intent intent = new Intent(getContext(), PostActivity.class);
         Bundle bundle = new Bundle();
-        bundle.putString("posttime", time);
+        bundle.putLong("posttime", time);
         bundle.putString("userid", uid);
         bundle.putString("postid", postID);
         intent.putExtras(bundle);
@@ -76,7 +76,7 @@ public class SearchFeedFragment extends FeedFragment {
         // All my posts
         return   db.collection("posts")
                 .whereEqualTo("status", "VACANT")
-                .orderBy("timeOf", Query.Direction.DESCENDING);
+                .orderBy("timeOf", Query.Direction.ASCENDING);
     }
 
 }
