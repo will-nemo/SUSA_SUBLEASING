@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
@@ -14,7 +15,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +48,7 @@ import java.util.Random;
 
 public class CreatePostActivity extends AppCompatActivity {
 
-    public TextView value;
+    public TextView value, descChar, titleChar;
     private Uri mdownloadUri;
     private EditText address, title, desc;
     private FirebaseAuth firebaseAuth;
@@ -85,8 +88,66 @@ public class CreatePostActivity extends AppCompatActivity {
         firebaseAuth= FirebaseAuth.getInstance();
         location = (Spinner) findViewById(R.id.spinner_location);
         dates = (Spinner) findViewById(R.id.spinner_availability);
+        descChar = (TextView) findViewById(R.id.text_chardesc);
+        titleChar = (TextView) findViewById(R.id.text_titlechars);
         useremail = firebaseAuth.getInstance().getCurrentUser().getEmail();
+
+
+
         databaseReference= FirebaseFirestore.getInstance();
+
+        desc.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int aft)
+            {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if(s.toString().length() >= 130)
+                    descChar.setTextColor(Color.RED);
+                else
+                    descChar.setTextColor(Color.parseColor("#FF512DA8"));
+
+                // this will show characters remaining
+                descChar.setText(140 - s.toString().length() + "/140");
+
+            }
+        });
+
+        title.addTextChangedListener(new TextWatcher()
+        {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count)
+            {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int aft)
+            {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s)
+            {
+                if(s.toString().length() >= 30)
+                    titleChar.setTextColor(Color.RED);
+                else
+                    titleChar.setTextColor(Color.parseColor("#FF512DA8"));
+
+                // this will show characters remaining
+                titleChar.setText(40 - s.toString().length() + "/40");
+
+            }
+        });
+
         location.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

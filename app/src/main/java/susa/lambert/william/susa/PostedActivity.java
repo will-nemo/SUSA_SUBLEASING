@@ -91,7 +91,7 @@ public class PostedActivity extends PostActivity {
         dText = findViewById(R.id.text_description);
         pText = findViewById(R.id.text_price);
         aText = findViewById(R.id.text_availability);
-        adText = findViewById(R.id.text_address);
+        adText = findViewById(R.id.text_location);
         eText = findViewById(R.id.text_email);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -102,7 +102,7 @@ public class PostedActivity extends PostActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserPost userPost = documentSnapshot.toObject(UserPost.class);
                 setValues(userPost.title, userPost.desc, userPost.price,
-                        userPost.availability, userPost.address, userPost.email);
+                        userPost.availability, userPost.location, userPost.email);
 
                 progressC = userPost.price;
                 addy = userPost.address;
@@ -136,14 +136,14 @@ public class PostedActivity extends PostActivity {
     }
 
     public void setValues(String title, String description, int price,
-                          String availability, String address, String email){
+                          String availability, String location, String email){
 
         String p = Integer.toString(price);
         tText.setText(title);
         dText.setText(description);
         pText.setText(p);
         aText.setText(availability);
-        adText.setText(address);
+        adText.setText(location);
         eText.setText(email);
 
     }

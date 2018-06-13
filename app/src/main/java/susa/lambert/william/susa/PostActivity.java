@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
 import com.squareup.picasso.Picasso;
+
 
 import java.util.Date;
 
@@ -63,6 +65,8 @@ public class PostActivity extends AppCompatActivity {
     private String avail;
     private String postID;
     private String[] mImages;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +74,7 @@ public class PostActivity extends AppCompatActivity {
 
         Toolbar myToolbar=(Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(myToolbar);
+
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
@@ -89,7 +94,7 @@ public class PostActivity extends AppCompatActivity {
         dText = findViewById(R.id.text_description);
         pText = findViewById(R.id.text_price);
         aText = findViewById(R.id.text_availability);
-        adText = findViewById(R.id.text_address);
+        adText = findViewById(R.id.text_location);
         eText = findViewById(R.id.text_email);
 
         firebaseFirestore = FirebaseFirestore.getInstance();
@@ -100,7 +105,7 @@ public class PostActivity extends AppCompatActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserPost userPost = documentSnapshot.toObject(UserPost.class);
                 setValues(userPost.title, userPost.desc, userPost.price,
-                        userPost.availability, userPost.address, userPost.email);
+                        userPost.availability, userPost.location, userPost.email);
 
                         progressC = userPost.price;
                         addy = userPost.address;
@@ -124,6 +129,8 @@ public class PostActivity extends AppCompatActivity {
                 ImagePagerAdapter adapter = new ImagePagerAdapter(PostActivity.this,mImages);
                 viewPager.setAdapter(adapter);
 
+
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -132,22 +139,18 @@ public class PostActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
+
     public void setValues(String title, String description, int price,
-                          String availability, String address, String email){
+                          String availability, String location, String email){
 
         String p = Integer.toString(price);
         tText.setText(title);
         dText.setText(description);
         pText.setText(p);
         aText.setText(availability);
-        adText.setText(address);
+        adText.setText(location);
         eText.setText(email);
 
     }

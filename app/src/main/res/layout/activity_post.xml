@@ -30,87 +30,120 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        app:srcCompat="@drawable/signup_logo" />
+        app:srcCompat="@drawable/signup_logo"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/text_title"
-        android:layout_width="270dp"
+        android:layout_width="367dp"
         android:layout_height="32dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="42dp"
-        android:text="Title"
-        android:textSize="18sp" />
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/text_description"
+        android:layout_marginTop="288dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
     <TextView
         android:id="@+id/text_description"
-        android:layout_width="268dp"
-        android:layout_height="55dp"
-        android:layout_alignEnd="@+id/imageView2"
+        android:layout_width="368dp"
+        android:layout_height="79dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="201dp"
-        android:text="Description"
-        android:textSize="16sp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="250dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
     <TextView
         android:id="@+id/text_price"
-        android:layout_width="85dp"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/text_availability"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="169dp"
-        android:text="Price" />
+        android:layout_alignTop="@+id/textView"
+        android:layout_toEndOf="@+id/textView3"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
         android:id="@+id/text_dollar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/imageView2"
         android:layout_alignTop="@+id/text_price"
-        android:layout_marginStart="54dp"
-        android:text="$" />
+        android:text="$"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
         android:id="@+id/text_availability"
-        android:layout_width="154dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/text_title"
-        android:layout_marginBottom="125dp"
-        android:text="Availability" />
+        android:layout_alignStart="@+id/text_location"
+        android:layout_alignTop="@+id/textView3"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
         android:id="@+id/text_info"
-        android:layout_width="140dp"
+        android:layout_width="66dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/text_title"
-        android:layout_marginBottom="74dp"
-        android:text="Contact:" />
+        android:layout_marginBottom="106dp"
+        android:layout_toStartOf="@+id/imageView2"
+        android:text="Contact:"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
         android:id="@+id/text_email"
-        android:layout_width="129dp"
+        android:layout_width="318dp"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/text_price"
         android:layout_alignTop="@+id/text_info"
-        android:layout_centerHorizontal="true"
-        android:text="Email" />
+        android:layout_marginStart="-10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <TextView
-        android:id="@+id/text_address"
-        android:layout_width="123dp"
+        android:id="@+id/text_location"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignTop="@+id/text_availability"
-        android:layout_marginEnd="55dp"
-        android:text="Address" />
+        android:layout_alignStart="@+id/text_price"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="0dp"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/container"
-        android:layout_width="343dp"
+        android:layout_width="364dp"
         android:layout_height="208dp"
         android:layout_alignTop="@+id/imageView2"
         android:layout_centerHorizontal="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="52dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_title"
+        android:layout_marginBottom="220dp"
+        android:text="Pricing:"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_title"
+        android:layout_marginBottom="183dp"
+        android:layout_marginStart="0dp"
+        android:text="Availability: "
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="76dp"
+        android:layout_height="22dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/text_title"
+        android:layout_marginBottom="147dp"
+        android:layout_marginStart="-2dp"
+        android:text="Location:"
+        android:textAppearance="@style/TextAppearance.AppCompat" />
+
 
 </RelativeLayout>

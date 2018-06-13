@@ -65,11 +65,12 @@
 
         <TextView
             android:id="@+id/post_id"
-            android:layout_width="376dp"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/post_dollar"
+            android:layout_width="395dp"
+            android:layout_height="40dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="3dp"
+            android:layout_below="@+id/post_image"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="7dp"
             android:text="Price"
             android:textColor="#0b0b0b"
             android:textSize="20dp" />
@@ -78,22 +79,20 @@
             android:id="@+id/post_address"
             android:layout_width="381dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/post_location"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="17dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/post_id"
             android:text="Address"
             android:textColor="#0b0b0b"
             android:textSize="15dp" />
 
         <TextView
             android:id="@+id/post_location"
-            android:layout_width="392dp"
+            android:layout_width="387dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/post_share"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="6dp"
-            android:layout_marginStart="6dp"
+            android:layout_marginBottom="21dp"
+            android:layout_marginStart="5dp"
             android:text="Location"
             android:textColor="#0b0b0b"
             android:textSize="15dp" />
@@ -142,8 +141,8 @@
             android:layout_below="@+id/post_dollar"
             android:layout_marginEnd="128dp"
             android:src="@drawable/ic_action_likes"
-            tools:ignore="RtlCompat"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:ignore="RtlCompat" />
 
         <TextView
             android:id="@+id/likes_num"
@@ -152,8 +151,8 @@
             android:layout_alignEnd="@+id/post_id"
             android:layout_below="@+id/post_dollar"
             android:text="0"
-            tools:ignore="RtlCompat"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:ignore="RtlCompat" />
 
 
     </RelativeLayout>
