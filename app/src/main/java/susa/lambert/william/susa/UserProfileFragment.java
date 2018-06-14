@@ -43,10 +43,14 @@ public class UserProfileFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private ImageButton iButton;
+    private Button eButton;
     private Uri imageURL, mdownloadUri;
     private ImageView profileImage;
     private StorageReference mStorage;
     private String newImage = "";
+    public String Name, College;
+
+
     public UserProfileFragment() {
         // Required empty public constructor
     }
@@ -64,6 +68,8 @@ public class UserProfileFragment extends Fragment {
         eText = rootview.findViewById(R.id.text_email);
         cText = rootview.findViewById(R.id.text_college);
         iButton = rootview.findViewById(R.id.imageButton);
+        eButton = rootview.findViewById(R.id.button_profle);
+
 
         mdownloadUri = Uri.parse("android.resource://"+rootview.getContext().getPackageName()+"/drawable/no_image_available");
         imageURL = Uri.parse("android.resource://"+rootview.getContext().getPackageName()+"/drawable/no_image_available");
@@ -102,12 +108,28 @@ public class UserProfileFragment extends Fragment {
             }
         });
 
+
+        eButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(getContext(), EditProfileActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("name", Name);
+                bundle.putString("college", College);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
         return rootview;
     }
 
     public void setInfo(String name, String college, String image){
         cText.setText(college);
         nText.setText(name);
+
+        Name = name;
+        College = college;
 
         if(!image.equals("DEFAULT"))
         Picasso.get().load(image).transform(new CircleTransform()).fit().centerCrop().into(profileImage);
