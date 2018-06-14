@@ -92,7 +92,8 @@
         android:text="Joined: "
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/text_joined"
@@ -103,7 +104,8 @@
         android:text="Joined"
         android:textColor="@color/colorAccent"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="invisible"/>
 
     <Button
         android:id="@+id/button_profle"
