@@ -75,6 +75,7 @@ public class CreatePostActivity extends AppCompatActivity {
     public boolean idFree;
     FirebaseFirestore databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -374,8 +375,13 @@ public class CreatePostActivity extends AppCompatActivity {
         UserPost userPost = new UserPost(progressC, addy, city, des, Uid, tsLong, temp_image,
                 temp_image2, temp_image3, useremail, avail, tit, postID);
 
+
+
+
         databaseReference.collection("posts").document(postID).set(userPost);
-        Toast.makeText(this, "Posted", Toast.LENGTH_LONG).show();
+
+
+      // Toast.makeText(this, "Posted", Toast.LENGTH_LONG).show();
     }
 
 

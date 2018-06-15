@@ -154,7 +154,8 @@
         android:layout_width="161dp"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/spinner_location"
-        android:layout_alignTop="@+id/tv_avail" />
+        android:layout_alignTop="@+id/tv_avail"
+        />
 
     <TextView
         android:id="@+id/tv_avail"

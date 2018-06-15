@@ -14,12 +14,26 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="253dp" />
 
+
     <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="184dp"
+        android:layout_height="148dp"
+        android:layout_above="@+id/tv_signup"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="left"
+        android:layout_marginBottom="-168dp"
+        app:srcCompat="@drawable/image_background" />
+
+    <ImageView
+        android:id="@+id/imageView6"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="94dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="48dp"
+        android:visibility="invisible"
         android:src="@drawable/signup_logo" />
 
     <TextView
@@ -111,5 +125,7 @@
         android:gravity="center"
         android:text="We don't post anything to Facebook."
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+
 
 </RelativeLayout>

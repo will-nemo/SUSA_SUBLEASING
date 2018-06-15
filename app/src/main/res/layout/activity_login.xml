@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".LoginActivity">
 
 
@@ -35,12 +36,26 @@
         android:theme="@style/MyButton" />
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:id="@+id/imageView5"
+        android:layout_width="184dp"
+        android:layout_height="148dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="57dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="19dp"
+        app:srcCompat="@drawable/image_background" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="100dp"
+        android:layout_height="94dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_marginTop="48dp"
+        android:visibility="invisible"
         android:src="@drawable/signup_logo" />
+
 
 
     <EditText
@@ -65,10 +80,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="167dp"
+        android:layout_marginTop="184dp"
         android:text="Sign In"
-        android:textSize="20dp"
         android:textColor="@color/colorPrimary"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
 </RelativeLayout>

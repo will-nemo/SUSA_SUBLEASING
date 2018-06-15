@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.squareup.picasso.Picasso;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     private static final String TAG = "EmailPassword";
+    public ImageView backImage, logoImage;
 
     private LoginButton loginButton;
     private CallbackManager callbackManager;
@@ -76,6 +80,13 @@ public class MainActivity extends AppCompatActivity {
         Email= (EditText) findViewById(R.id.user_email);
         mUsername = (EditText) findViewById(R.id.user_name);
         PasswordText = (EditText) findViewById(R.id.user_pw);
+        backImage = (ImageView) findViewById(R.id.imageView5);
+        logoImage = (ImageView) findViewById(R.id.imageView6);
+
+        Uri mImage= Uri.parse("android.resource://"+getApplicationContext().getPackageName()+"/drawable/image_background");
+        Picasso.get().load(mImage).transform(new CircleTransform()).fit().centerCrop().into(backImage);
+        logoImage.setVisibility(View.VISIBLE);
+
         progressDialog= new ProgressDialog(this);
         PrintHashKey();
 
@@ -130,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+             //   Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -142,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
+      //  Log.d(TAG, "handleFacebookAccessToken:" + token);
 
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         firebaseAuth.signInWithCredential(credential)
@@ -151,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
+                          //  Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = firebaseAuth.getCurrentUser();
                             Intent intent = new Intent(MainActivity.this, FeedActivity.class);
                             startActivity(intent);
@@ -248,8 +259,8 @@ public class MainActivity extends AppCompatActivity {
 
                                 mDatabase.collection("users").document(id).set(mUser);
                             }
-                            Toast.makeText(MainActivity.this, "Authentication Successful.",
-                                    Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, "Authentication Successful.",
+                              //      Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                             startActivity(intent);
 
