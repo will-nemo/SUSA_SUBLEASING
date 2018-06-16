@@ -2,8 +2,13 @@ package susa.lambert.william.susa;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +16,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +31,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
@@ -45,6 +52,7 @@ public class PostActivity extends AppCompatActivity {
     private long timeOF;
     private String pUser = "";
     private String iPost = "";
+    private String action = "", check = "";
     public String loc,desc,addr,uid,img, img2, img3,email, availabilty;
     public int pri, likes_digit;
     public long time;
@@ -67,7 +75,6 @@ public class PostActivity extends AppCompatActivity {
     private String postID;
     private String[] mImages;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +83,6 @@ public class PostActivity extends AppCompatActivity {
         Toolbar myToolbar=(Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(myToolbar);
 
-
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
 
@@ -84,7 +90,13 @@ public class PostActivity extends AppCompatActivity {
             timeOF = bundle.getLong("posttime");
             pUser = bundle.getString("userid");
             iPost = bundle.getString("postid");
+            action = bundle.getString("action");
+            check = bundle.getString("user");
+
+            Toast.makeText(PostActivity.this, action, Toast.LENGTH_LONG).show();
         }
+
+
 
         ActionBar ab = getSupportActionBar();
         // Enable the Up button
@@ -100,13 +112,34 @@ public class PostActivity extends AppCompatActivity {
 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
-        DocumentReference docRef = firebaseFirestore.collection("posts").document(iPost);
+        if (Build.VERSION.SDK_INT >= 11) {
+            invalidateOptionsMenu();
+        }
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+
+        DocumentReference docRef;
+
+        if(!check.isEmpty()) {
+            if (check.equals("yes")) {
+                docRef = firebaseFirestore.collection("user-likes").document(FirebaseAuth.getInstance().getUid())
+                        .collection("likes").document(iPost);
+            } else {
+                docRef = firebaseFirestore.collection("posts").document(iPost);
+            }
+        }else {
+            docRef = firebaseFirestore.collection("posts").document(iPost);
+        }
+
         docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 UserPost userPost = documentSnapshot.toObject(UserPost.class);
+
                 setValues(userPost.title, userPost.desc, userPost.price,
                         userPost.availability, userPost.location, userPost.email);
+
+
 
                         progressC = userPost.price;
                         addy = userPost.address;
@@ -129,8 +162,6 @@ public class PostActivity extends AppCompatActivity {
                 ViewPager viewPager = findViewById(R.id.container);
                 ImagePagerAdapter adapter = new ImagePagerAdapter(PostActivity.this,mImages);
                 viewPager.setAdapter(adapter);
-
-
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -158,8 +189,28 @@ public class PostActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.post_tool, menu);
+        if (Build.VERSION.SDK_INT >= 11) {
+            selectMenu(menu);
+        }
+        return true;
+    }
+
+    private void selectMenu(Menu menu) {
+        menu.clear();
+        MenuInflater inflater = getMenuInflater();
+
+        if (action.equals("contains")) {
+            inflater.inflate(R.menu.post_tool_stored, menu);
+        }
+        else if(action.equals("nope")){
+            inflater.inflate(R.menu.post_tool, menu);
+        }
+    }
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (Build.VERSION.SDK_INT < 11) {
+            selectMenu(menu);
+        }
         return true;
     }
 
@@ -184,37 +235,117 @@ public class PostActivity extends AppCompatActivity {
             String userid = FirebaseAuth.getInstance().getCurrentUser().getUid();
             UserPost userPost = new UserPost(progressC, addy, city, des, Uid, timeOF, temp_image,
                     temp_image2, temp_image3, useremail, avail, tit, postID);
+
+            LikedBy likedBy = new LikedBy(userid, postID);
+
             FirebaseFirestore dt = FirebaseFirestore.getInstance();
             FirebaseFirestore dl = FirebaseFirestore.getInstance();
 
-            dt.collection("user-likes").document(userid).collection("likes")
-                    .document(postID).set(userPost);
+            if(action.equals("nope")) {
+            //    tintMenuIcon(PostActivity.this, item, R.color.colorAccent);
+
+                dt.collection("user-likes").document(userid).collection("likes")
+                        .document(postID).set(userPost);
 
 
-            final DocumentReference sfDocRef = dl.collection("posts").document(postID);
+                dt.collection("post-likes").document(postID).collection("liked-by")
+                        .document(userid).set(likedBy);
 
-            dl.runTransaction(new Transaction.Function<Void>() {
-                @Override
-                public Void apply(Transaction transaction) throws FirebaseFirestoreException {
-                    DocumentSnapshot snapshot = transaction.get(sfDocRef);
-                    double newnum = snapshot.getDouble("likes") + 1;
-                    transaction.update(sfDocRef, "likes", newnum);
 
-                    // Success
-                    return null;
+
+                final DocumentReference sfDocRef = dl.collection("posts").document(postID);
+
+                dl.runTransaction(new Transaction.Function<Void>() {
+                    @Override
+                    public Void apply(Transaction transaction) throws FirebaseFirestoreException {
+                        DocumentSnapshot snapshot = transaction.get(sfDocRef);
+                        double newnum = snapshot.getDouble("likes") + 1;
+                        transaction.update(sfDocRef, "likes", newnum);
+
+                        // Success
+                        return null;
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        //Log.d(TAG, "Transaction success!");
+                    }
+                })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //Log.w(TAG, "Transaction failure.", e);
+                            }
+                        });
+
+                action = "contains";
+                if (Build.VERSION.SDK_INT >= 11) {
+                    invalidateOptionsMenu();
                 }
-            }).addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    //Log.d(TAG, "Transaction success!");
+
+            }else if (action.equals("contains")){
+              //  tintMenuIcon(PostActivity.this, item, R.color.colorItem);
+                dt.collection("user-likes").document(userid).collection("likes").document(postID)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Log.w(TAG, "Error deleting document", e);
+                            }
+                        });
+
+                dt.collection("post-likes").document(postID).collection("liked-by").document(userid)
+                        .delete()
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+
+                                //Log.d(TAG, "DocumentSnapshot successfully deleted!");
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // Log.w(TAG, "Error deleting document", e);
+                            }
+                        });
+                final DocumentReference sfDocRef = dl.collection("posts").document(postID);
+
+                dl.runTransaction(new Transaction.Function<Void>() {
+                    @Override
+                    public Void apply(Transaction transaction) throws FirebaseFirestoreException {
+                        DocumentSnapshot snapshot = transaction.get(sfDocRef);
+                        double newnum = snapshot.getDouble("likes") - 1;
+                        transaction.update(sfDocRef, "likes", newnum);
+
+                        // Success
+                        return null;
+                    }
+                }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        //Log.d(TAG, "Transaction success!");
+                    }
+                })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //Log.w(TAG, "Transaction failure.", e);
+                            }
+                        });
+
+                action = "nope";
+                if (Build.VERSION.SDK_INT >= 11) {
+                    invalidateOptionsMenu();
                 }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            //Log.w(TAG, "Transaction failure.", e);
-                        }
-                    });
+            }
 
 
             return true;
@@ -224,6 +355,13 @@ public class PostActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public static void tintMenuIcon(Context context, MenuItem item, @ColorRes int color) {
+        Drawable normalDrawable = item.getIcon();
+        Drawable wrapDrawable = DrawableCompat.wrap(normalDrawable);
+        DrawableCompat.setTint(wrapDrawable, context.getResources().getColor(color));
+
+        item.setIcon(wrapDrawable);
+    }
 
     private class ImagePagerAdapter extends PagerAdapter {
         private Context context;
@@ -264,5 +402,6 @@ public class PostActivity extends AppCompatActivity {
             ((ViewPager) container).removeView((ImageView) object);
         }
     }
+
 }
 

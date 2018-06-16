@@ -40,6 +40,7 @@ public class UserPostsFrag extends FeedFragment {
         bundle.putString("userid", uid);
         bundle.putString("postid", postID);
         bundle.putString("action", "user");
+
         intent.putExtras(bundle);
         startActivity(intent);
     }
