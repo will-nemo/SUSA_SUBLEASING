@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp"
+        android:gravity="center"
+        android:text="Is this your college?" />
+
+    <TextView
+        android:id="@+id/tv_cname"
+        android:layout_width="239dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="102dp"
+        android:gravity="center"
+        android:text="College Name"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/b_yes"
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="200dp"
+        android:text="YES" />
+
+    <Button
+        android:id="@+id/b_no"
+        android:layout_width="103dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/b_yes"
+        android:layout_marginEnd="65dp"
+        android:text="NO" />
+
+
+</RelativeLayout>

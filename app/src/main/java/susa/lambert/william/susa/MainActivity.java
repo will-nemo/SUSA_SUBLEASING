@@ -213,16 +213,9 @@ public class MainActivity extends AppCompatActivity {
         if(check.contains("@")){	//checks to see if there is an email entered - WJL
             check = check.split("@")[1];
 
-            if(check.equalsIgnoreCase("my.fsu.edu") || check.equalsIgnoreCase("tcc.fl.edu")|| check.equalsIgnoreCase("famu.edu")){		//makes sure user registering has a College Email - WJL
-
-                if(check.equalsIgnoreCase("tcc.fl.edu"))
-                    college = "Tallahassee Community College";
-
-                if(check.equalsIgnoreCase("my.fsu.edu"))
-                    college = "Florida State University";
-
-                if(check.equalsIgnoreCase("famu.edu"))
-                    college = "Florida A&M University";
+          //  if(check.equalsIgnoreCase("my.fsu.edu") || check.equalsIgnoreCase("tcc.fl.edu")|| check.equalsIgnoreCase("famu.edu")){		//makes sure user registering has a College Email - WJL
+            if(check.toLowerCase().contains("edu")){
+                    college = "NULL";
 
             }else{
                 Toast.makeText(MainActivity.this, "College Email Required",
@@ -262,7 +255,8 @@ public class MainActivity extends AppCompatActivity {
                             }
                             //Toast.makeText(MainActivity.this, "Authentication Successful.",
                               //      Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                           // Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                            Intent intent = new Intent(MainActivity.this, FindCollegeActivity.class);
                             startActivity(intent);
 
                         } else {

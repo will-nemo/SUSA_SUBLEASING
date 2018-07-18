@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,7 +21,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
     private EditText nText, cText;
-    private Button sButton;
+    private TextView collegeTxt;
+    private Button sButton, cButton;
     private String name = "", college = "";
 
     @Override
@@ -43,21 +45,32 @@ public class EditProfileActivity extends AppCompatActivity {
 
         nText = findViewById(R.id.edit_name);
         cText = findViewById(R.id.edit_college);
+        collegeTxt = findViewById(R.id.textViewCollege);
         sButton = findViewById(R.id.button_save);
-
+        cButton = findViewById(R.id.button_change);
 
         nText.setText(name);
         cText.setText(college);
+        collegeTxt.setText(college);
 
         Toolbar myToolbar=(Toolbar) findViewById(R.id.toolbar) ;
         setSupportActionBar(myToolbar);
 
+        cButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditProfileActivity.this, FindCollegeActivity.class);
+                startActivity(intent);
+            }
+        });
+
         sButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String uid = firebaseAuth.getInstance().getCurrentUser().getUid();
 
-              DocumentReference docRef = firebaseFirestore.collection("users").document(uid);
+                DocumentReference docRef = firebaseFirestore.collection("users").document(uid);
 
               if(!nText.getText().toString().equals(name) && !cText.getText().toString().equals(college) ){
                     docRef.update("name", nText.getText().toString());

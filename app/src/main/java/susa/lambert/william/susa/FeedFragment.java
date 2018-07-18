@@ -22,13 +22,14 @@ import com.squareup.picasso.Picasso;
 
 public abstract class FeedFragment extends Fragment {
 
-    public class UserPostHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
-        View mView;
-        Context mContext;
-        String loc,desc,addr,uid,img, img2, img3,email, availabilty, postID;
-        int pri, likes_digit;
-        long time;
+    public class UserPostHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+
+            View mView;
+            Context mContext;
+            String loc,desc,addr,uid,img, img2, img3,email, availabilty, postID;
+            int pri, likes_digit;
+            long time;
+
 
         public UserPostHolder(View itemView)
         {

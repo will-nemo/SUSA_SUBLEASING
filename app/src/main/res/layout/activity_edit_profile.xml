@@ -35,8 +35,8 @@
         android:id="@+id/tv_college"
         android:layout_width="103dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/edit_college"
-        android:layout_alignStart="@+id/tv_name"
+        android:layout_alignTop="@+id/textViewCollege"
+        android:layout_toStartOf="@+id/edit_name"
         android:text="College:"
         android:textSize="24sp" />
 
@@ -56,20 +56,41 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginEnd="48dp"
-        android:layout_marginTop="208dp"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="36dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="College" />
+        android:text="College"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/button_save"
-        android:layout_width="258dp"
+        android:layout_width="270dp"
         android:layout_height="62dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="194dp"
+        android:layout_alignStart="@+id/button_change"
+        android:layout_marginBottom="101dp"
         android:text="Save changes" />
+
+    <TextView
+        android:id="@+id/textViewCollege"
+        android:layout_width="242dp"
+        android:layout_height="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/edit_name"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="206dp"
+        android:gravity="left"
+        android:text="TextView"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/button_change"
+        android:layout_width="267dp"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="189dp"
+        android:text="Change college" />
 
 </RelativeLayout>

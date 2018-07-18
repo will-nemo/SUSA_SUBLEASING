@@ -6,27 +6,28 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:name=".SplashDuration"
         android:allowBackup="true"
+        android:configChanges="orientation"
         android:icon="@mipmap/susa_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/susa_launcher_round"
+        android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:configChanges="orientation"
-        android:screenOrientation="portrait">
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FeedActivity"
             android:configChanges="orientation"
@@ -34,8 +35,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CreatePostActivity"
-            android:parentActivityName=".FeedActivity"
             android:configChanges="orientation"
+            android:parentActivityName=".FeedActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
 
@@ -46,23 +47,23 @@
         </activity>
         <activity
             android:name=".PostActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="susa.lambert.william.susa.FeedActivity" />
         </activity>
         <activity
             android:name=".SearchQActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SearchFActivity"
-            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="susa.lambert.william.susa.SearchQActivity" />
@@ -79,8 +80,8 @@
         <activity
             android:name=".UserProfileActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:label="@string/title_activity_user_profile"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -100,7 +101,8 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".SplashActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
@@ -109,6 +111,11 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".FindCollegeActivity"
+            android:label="@string/app_name"
+            android:windowSoftInputMode="adjustPan"
+           >
         </activity>
     </application>
 

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="susa.lambert.william.susa.FindCollegeActivity"
+    tools:showIn="@layout/activity_find_college">
+
+    <TextView
+        android:id="@+id/text_notfound"
+        android:layout_width="239dp"
+        android:layout_height="177dp"
+        android:layout_below="@+id/text_enter"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="Could not find the entered college. Did you spell it right? Remember to enter the full name!"
+        android:visibility="invisible" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="429dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="61dp" />
+
+    <EditText
+        android:id="@+id/text_enter"
+        android:layout_width="292dp"
+        android:layout_height="57dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="45dp"
+        android:ems="10"
+        android:hint="Ex: Florida State University"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/text_info"
+        android:layout_width="299dp"
+        android:layout_height="36dp"
+        android:layout_above="@+id/text_enter"
+        android:layout_alignStart="@+id/text_enter"
+        android:layout_marginBottom="-45dp"
+        android:text="Search for you College..."
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp" />
+
+    <ImageButton
+        android:id="@+id/search_button"
+        android:layout_width="54dp"
+        android:layout_height="46dp"
+        android:layout_alignTop="@+id/text_enter"
+        android:layout_toEndOf="@+id/text_enter"
+        android:background="@color/colorPrimary"
+        app:srcCompat="@android:drawable/ic_menu_search"
+        android:contentDescription="search image" />
+
+</RelativeLayout>
